@@ -3,4 +3,5 @@
 # Manually managing azure-functions-worker may cause unexpected issues
 
 azure-functions==1.23.0
+azure-storage-blob
 pdf2image
