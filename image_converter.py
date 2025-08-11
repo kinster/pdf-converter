@@ -8,14 +8,14 @@ import uuid
 # poppler_path="/opt/homebrew/bin"
 
 
-# is_azure = os.environ.get("IsRunningInAzure", "false").lower() == "true"
+is_azure = os.environ.get("IsRunningInAzure", "false").lower() == "true"
 
-# if is_azure:
+if is_azure:
     # Running in Azure
-poppler_path = "/home/site/wwwroot/poppler/bin"
-# else:
+    poppler_path = "/home/site/wwwroot/poppler/bin"
+else:
     # Running locally
-    # poppler_path = "/opt/homebrew/bin"  
+    poppler_path = "/opt/homebrew/bin"  
 
 
 def pdf_to_base64_images(pdf_bytes):
