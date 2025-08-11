@@ -17,9 +17,13 @@ else:
     # Running locally
     poppler_path = "/opt/homebrew/bin"  
 
+print("Poppler bin contents:", os.listdir(poppler_path))
+
 
 def pdf_to_base64_images(pdf_bytes):
     # Convert PDF to PIL images (one per page)
+
+
 
     images = convert_from_bytes(pdf_bytes, poppler_path=poppler_path)
 
