@@ -3,6 +3,7 @@ from azure.storage.blob import BlobServiceClient
 import io
 import os
 import uuid
+import logging
 
 # poppler_path = os.path.join(os.getcwd(), "poppler", "bin")
 # poppler_path="/opt/homebrew/bin"
@@ -17,7 +18,7 @@ else:
     # Running locally
     poppler_path = "/opt/homebrew/bin"  
 
-# print("Poppler bin contents:", os.listdir(poppler_path))
+    logging.info(f"Poppler bin contents: {os.listdir(poppler_path)}")
 
 
 def pdf_to_base64_images(pdf_bytes):
