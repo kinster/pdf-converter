@@ -17,7 +17,7 @@ else:
     # Running locally
     poppler_path = "/opt/homebrew/bin"  
 
-print("Poppler bin contents:", os.listdir(poppler_path))
+# print("Poppler bin contents:", os.listdir(poppler_path))
 
 
 def pdf_to_base64_images(pdf_bytes):
