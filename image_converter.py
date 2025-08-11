@@ -9,15 +9,15 @@ import logging
 # poppler_path="/opt/homebrew/bin"
 
 
-is_azure = os.environ.get("IsRunningInAzure", "false").lower() == "true"
+# is_azure = os.environ.get("IsRunningInAzure", "false").lower() == "true"
 
-if is_azure:
-    # Running in Azure
-    poppler_path = "/home/site/wwwroot/poppler/bin"
-else:
+# if is_azure:
+#     # Running in Azure
+#     poppler_path = "/home/site/wwwroot/poppler/bin"
+# else:
     # Running locally
-    poppler_path = "/opt/homebrew/bin"  
-
+    # poppler_path = "/opt/homebrew/bin"  
+poppler_path = os.path.join(os.getcwd(), "poppler", "bin")
 
 def pdf_to_base64_images(pdf_bytes):
     # Convert PDF to PIL images (one per page)
