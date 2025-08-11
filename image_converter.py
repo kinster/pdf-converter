@@ -4,9 +4,24 @@ import io
 import os
 import uuid
 
+# poppler_path = os.path.join(os.getcwd(), "poppler", "bin")
+# poppler_path="/opt/homebrew/bin"
+
+
+is_azure = os.environ.get("IsRunningInAzure", "false").lower() == "true"
+
+if is_azure:
+    # Running in Azure
+    poppler_path = "/home/site/wwwroot/poppler/bin"
+else:
+    # Running locally
+    poppler_path = "/opt/homebrew/bin"  
+
+
 def pdf_to_base64_images(pdf_bytes):
     # Convert PDF to PIL images (one per page)
-    images = convert_from_bytes(pdf_bytes)
+
+    images = convert_from_bytes(pdf_bytes, poppler_path=poppler_path)
 
     base64_images = []
     for img in images:
@@ -28,7 +43,8 @@ def pdf_to_blob_images(pdf_bytes, connect_string, container_name="pdf-images"):
         pass  # Already exists
 
     # Convert PDF to images
-    images = convert_from_bytes(pdf_bytes)
+    images = convert_from_bytes(pdf_bytes, poppler_path=poppler_path)
+
     blob_urls = []
 
     for idx, img in enumerate(images):
