@@ -33,6 +33,12 @@ jobs:
             --resource-group rg-walldetection \
             --settings LD_LIBRARY_PATH=/home/site/wwwroot/poppler/lib
 
+      - name: 🧪 Verify App Settings
+        run: |
+          az functionapp config appsettings list \
+            --name pdf-converter-func \
+            --resource-group rg-walldetection
+
       - name: 📥 Install Azure Functions Core Tools
         run: |
           npm install -g azure-functions-core-tools@4 --unsafe-perm true
