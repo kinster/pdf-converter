@@ -134,6 +134,10 @@ __queuestorage__
 __azurite_db*__.json
 .python_packages
 
+# EXCEPT poppler binaries and libs
 !poppler/
 !poppler/bin/
+!poppler/bin/*
 !poppler/lib/
+!poppler/lib/*.so
+!poppler/lib/*.so.*
