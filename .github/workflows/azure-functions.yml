@@ -30,7 +30,7 @@ jobs:
         run: |
           az functionapp config appsettings set \
             --name pdf-converter-func \
-            --resource-group <YOUR_RESOURCE_GROUP> \
+            --resource-group rg-walldetection \
             --settings LD_LIBRARY_PATH=/home/site/wwwroot/poppler/lib
 
       - name: 📥 Install Azure Functions Core Tools
