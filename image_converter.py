@@ -18,6 +18,7 @@ import logging
     # Running locally
     # poppler_path = "/opt/homebrew/bin"  
 poppler_path = os.path.join(os.getcwd(), "poppler", "bin")
+poppler_lib_path = os.path.join(os.getcwd(), "poppler", "lib")
 
 def pdf_to_base64_images(pdf_bytes):
     # Convert PDF to PIL images (one per page)
@@ -44,6 +45,8 @@ def pdf_to_blob_images(pdf_bytes, connect_string, container_name="pdf-images"):
         pass  # Already exists
 
     logging.info(f"Poppler bin contents: {os.listdir(poppler_path)}")
+    logging.info(f"Poppler lib contents: {os.listdir(poppler_lib_path)}")
+    
 
     # Convert PDF to images
     images = convert_from_bytes(pdf_bytes, poppler_path=poppler_path)
