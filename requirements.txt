@@ -5,3 +5,5 @@
 azure-functions==1.23.0
 azure-storage-blob
 pdf2image
+PyMuPDF==1.23.22
+python-multipart

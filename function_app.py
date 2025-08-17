@@ -6,6 +6,7 @@ import os
 
 from image_converter import pdf_to_base64_images
 from image_converter import pdf_to_blob_images
+from get_dpi_from_pdf import detect_pdf_dpi_from_bytes
 
 app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
 
@@ -28,7 +29,6 @@ def http_trigger(req: func.HttpRequest) -> func.HttpResponse:
     except Exception as e:
         return func.HttpResponse(f"Error: {str(e)}", status_code=500)
 
-
 @app.route(route="pdftoblobimage", methods=["POST"])
 def pdftoblobimage(req: func.HttpRequest) -> func.HttpResponse:
     try:
@@ -50,7 +50,23 @@ def pdftoblobimage(req: func.HttpRequest) -> func.HttpResponse:
     except Exception as e:
         return func.HttpResponse(f"Error: {str(e)}", status_code=500)
 
+@app.route(route="detectpdfdpi", methods=["POST"])
+def detectpdfdpi(req: func.HttpRequest) -> func.HttpResponse:
+    try:
+        # Get PDF as binary from request body
+        pdf_bytes = req.get_body()
 
+        # Convert PDF to image (first page only)
+        # images = convert_from_bytes(pdf_bytes)
+        results = detect_pdf_dpi_from_bytes(pdf_bytes)  # your DPI function
 
+        return func.HttpResponse(
+            body=json.dumps(results, indent=2),  # serialize your list of dicts
+            status_code=200,
+            mimetype="application/json"
+        )
+
+    except Exception as e:
+        return func.HttpResponse(f"Error: {str(e)}", status_code=500)
 
 
